@@ -21,7 +21,7 @@ export class FhirService {
     const url = `${this.baseUrl}${resourceType}`;
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/fhir+json' 
+        'Content-Type': 'application/json' 
       })
     };
     return this.http.post(url, resource, httpOptions);
@@ -32,7 +32,7 @@ export class FhirService {
     const url = `${this.baseUrl}${resourceType}/${id}`;
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/fhir+json' 
+        'Content-Type': 'application/json' 
       })
     };
     return this.http.put(url, resource, httpOptions);
@@ -43,7 +43,7 @@ export class FhirService {
     const url = `${this.baseUrl}${resourceType}/${id}`;
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/fhir+json',
+        'Content-Type': 'application/json',
         'Prefer': 'return=representation' // Demander au serveur de renvoyer la ressource mise à jour
       })
     };
