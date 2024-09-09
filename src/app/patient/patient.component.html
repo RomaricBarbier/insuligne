@@ -1,0 +1,25 @@
+<h2>Patient Details</h2>
+
+<!-- Vérifiez que les données existent avant de les afficher -->
+<div *ngIf="patient">
+    <p><strong>Resource Type:</strong> {{ patient.resourceType }}</p>
+    <p><strong>Patient ID:</strong> {{ patient.id }}</p>
+    
+    <h3>Name</h3>
+    <ul>
+      <li *ngFor="let name of patient.name">
+        <strong>{{ name.use }} name:</strong> 
+        {{ name.family ? name.family + ', ' : '' }} 
+        {{ name.given.join(' ') }}
+      </li>
+    </ul>
+  
+    <p><strong>Gender:</strong> {{ patient.gender }}</p>
+    <p><strong>Birth Date:</strong> {{ patient.birthDate }}</p>
+    <p><strong>Deceased:</strong> {{ patient.deceasedBoolean ? 'Yes' : 'No' }}</p>
+  </div>
+  
+  <!-- Si les données ne sont pas encore chargées -->
+  <div *ngIf="!patient">
+    <p>Loading patient data...</p>
+  </div>
