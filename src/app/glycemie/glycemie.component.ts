@@ -17,7 +17,11 @@ export class GlycemieComponent implements OnInit {
   glycemiaForm!: FormGroup;
   selectedPatientId: string | null = null;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private idPatientAuthentrification: AuthentificationService) {} // Injection de HttpClient
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private idPatientAuthentrification: AuthentificationService
+  ) {}
 
   ngOnInit(): void {
     // Initialiser le formulaire avec le champ glycemia et la validation pour accepter seulement des chiffres
@@ -31,11 +35,16 @@ export class GlycemieComponent implements OnInit {
     this.selectedPatientId = this.idPatientAuthentrification.getSelectedPatientId();
     console.log('Selected patient ID:', this.selectedPatientId);
 
+    if (!this.selectedPatientId) {
+      console.error('Patient ID is missing');
+      return;
+    }
+
     if (this.glycemiaForm.valid) {
       const glycemiaValue = this.glycemiaForm.value.glycemia;
 
       // Construire la requête POST pour créer une nouvelle observation (glycémie)
-      const url = `https://fhir.alliance4u.io/observation`; // Changer l'URL pour une requête POST à Observation
+      const url = `https://fhir.alliance4u.io/api/observation`; // URL correcte pour une requête POST
       const body = {
         resourceType: 'Observation',
         status: 'final',
@@ -52,13 +61,15 @@ export class GlycemieComponent implements OnInit {
           reference: `Patient/${this.selectedPatientId}` // Passer l'ID du patient ici
         },
         valueQuantity: {
-          value: glycemiaValue,
+          value: parseFloat(glycemiaValue), // Assurez-vous que c'est un nombre
           unit: 'mmol/L',
           system: 'http://unitsofmeasure.org',
           code: 'mmol/L'
         },
         effectiveDateTime: new Date().toISOString() // Date actuelle pour l'observation
       };
+
+      console.log('Request body:', body); // Afficher le contenu de la requête
 
       // Envoyer la requête POST à l'API pour créer la nouvelle observation
       this.http.post(url, body).pipe(
