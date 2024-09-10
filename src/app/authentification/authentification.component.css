@@ -1,0 +1,37 @@
+.patient-list {
+    display: flex;
+    flex-direction: column; /* Aligner les cartes en colonne */
+    align-items: center; /* Centrer les cartes horizontalement */
+    gap: 20px; /* Espacement entre les cartes */
+  }
+  
+  .patient-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 250px; /* Largeur fixe pour les cartes */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer; /* Curseur pointer pour indiquer que la carte est cliquable */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transitions pour les effets */
+  }
+  
+  .patient-card:hover {
+    background-color: #e2e6ea; /* Couleur de fond au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre au survol */
+    transform: translateY(-5px); /* Légère translation pour l'effet de levitation */
+  }
+  
+  .patient-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .patient-card p {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #555;
+  }
+  
