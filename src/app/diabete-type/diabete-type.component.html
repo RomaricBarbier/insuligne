@@ -1,13 +1,14 @@
-<form [formGroup]="diabeteTypeForm" (ngSubmit)="enregistrerType()">
-  <label for="diabeteType">Type de diabète :</label>
-  <select id="diabeteType" formControlName="diabeteType">
-    <option value="type1">Diabète Type 1</option>
-    <option value="type2">Diabète Type 2</option>
+<form [formGroup]="diabeteTypeForm" (ngSubmit)="enregistrerType()" [ngClass]="{'disabled-form': diagnosticReportExists}">
+  <label for="diabeteType">Type de diabète:</label>
+  <select id="diabeteType" formControlName="diabeteType" [attr.disabled]="diagnosticReportExists ? true : null">
+    <option value="type1">Type 1</option>
+    <option value="type2">Type 2</option>
   </select>
 
-  <!-- Le bouton sera désactivé si un DiagnosticReport existe déjà pour le patient -->
-  <button type="submit" [disabled]="diagnosticReportExists">Enregistrer le type de diabète</button>
-
-  <!-- Message si un DiagnosticReport existe déjà -->
-  <p *ngIf="diagnosticReportExists" style="color: red;">Un DiagnosticReport existe déjà pour ce patient.</p>
+  <button type="submit" [attr.disabled]="diagnosticReportExists ? true : null">Enregistrer</button>
 </form>
+
+<!-- Optionnel : Ajouter un message pour informer l'utilisateur -->
+<div *ngIf="diagnosticReportExists">
+  <p>Le DiagnosticReport existe déjà pour ce patient. Le formulaire est désactivé.</p>
+</div>

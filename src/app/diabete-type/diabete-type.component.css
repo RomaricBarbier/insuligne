@@ -1,0 +1,11 @@
+.disabled-form {
+    opacity: 0.5;
+    pointer-events: none; /* Désactive tous les événements de souris */
+  }
+  
+  /* Optionnel : Ajouter des styles pour les éléments désactivés */
+  .disabled-form select[disabled],
+  .disabled-form button[disabled] {
+    background-color: #f0f0f0;
+    border: 1px solid #dcdcdc;
+  }

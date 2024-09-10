@@ -5,18 +5,20 @@ import { FhirService } from '../fhir.service';
 import { catchError, of } from 'rxjs';
 import { throwError } from 'rxjs';
 import { AuthentificationService } from '../authentification/authentification.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-diabete-type',
   standalone: true,
   templateUrl: './diabete-type.component.html',
   styleUrls: ['./diabete-type.component.css'],
-  imports: [ReactiveFormsModule] // Assurez-vous que ReactiveFormsModule est importé
+  imports: [ReactiveFormsModule, CommonModule]
 })
 export class DiabeteTypeComponent implements OnInit {
   diabeteTypeForm!: FormGroup;
   selectedPatientId: string | null = null;
   diagnosticReportExists: boolean = false; // Variable pour savoir si un DiagnosticReport existe déjà
+  diabetesTypes : any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -35,46 +37,38 @@ export class DiabeteTypeComponent implements OnInit {
     this.selectedPatientId = this.idPatientAuthentrification.getSelectedPatientId();
     console.log('Selected patient ID:', this.selectedPatientId);
 
-    // Vérifiez s'il existe déjà un DiagnosticReport pour ce patient
-    this.checkExistingDiagnosticReport();
+    this.getDiabetesTypes();
   }
 
-  // Fonction pour vérifier si un DiagnosticReport existe déjà pour ce patient
-  checkExistingDiagnosticReport() {
-    if (!this.selectedPatientId) {
-      console.error('Patient ID is missing');
-      return;
-    }
+  getDiabetesTypes() : void {
+    const url = 'api/diagnostic-report';
 
-    // Construisez l'URL pour récupérer les DiagnosticReports en filtrant par le patient
-    const url = `api/diagnostic-report/${this.selectedPatientId}`;
-
-    // Envoyer la requête GET pour récupérer les rapports diagnostiques du patient
-    this.fhirService.get(url).pipe(
-      catchError(error => {
-        console.error('Erreur lors de la vérification du DiagnosticReport.', error);
-        return of(null); // Retourner null en cas d'erreur
-      })
-    ).subscribe((response: any) => {
-      if (response && response.entry && response.entry.length > 0) {
-        // Analyser chaque DiagnosticReport dans la réponse
-        const reports = response.entry;
-        const reportForPatient = reports.some((entry: any) => {
-          return entry.resource.subject.reference === `Patient/${this.selectedPatientId}`;
-        });
-
-        if (reportForPatient) {
-          this.diagnosticReportExists = true;
-          console.log('DiagnosticReport already exists for this patient.');
-        } else {
-          this.diagnosticReportExists = false;
-          console.log('No DiagnosticReport found for this patient.');
-        }
-      } else {
-        this.diagnosticReportExists = false;
-        console.log('No DiagnosticReport found for this patient.');
+    // Appel du service pour récupérer les diagnostics
+    this.fhirService.get(url).subscribe({
+      next: (data) => {
+        this.diabetesTypes = data; // On stocke le résultat dans la variable diabetesTypes
+        console.log('Diabetes types data:', this.diabetesTypes);
+      },
+      error: (error) => {
+        console.error('Error fetching diabetes types:', error);
+      },
+      complete: () => {
+        console.log('Diabetes types data fetched successfully');
+        this.checkDiagnosticReportExists(); // Vérifier si le diagnostic existe après avoir récupéré les données
       }
     });
+  }
+
+  checkDiagnosticReportExists(): void {
+    // Vérifier si l'ID du patient est présent dans les diagnostics
+    if (this.selectedPatientId) {
+      this.diagnosticReportExists = this.diabetesTypes.some(diagnostic =>
+        diagnostic.subject?.reference === `Patient/${this.selectedPatientId}`
+      );
+    } else {
+      this.diagnosticReportExists = false;
+    }
+    console.log('Diagnostic report exists:', this.diagnosticReportExists);
   }
 
   // Fonction pour soumettre le type de diabète
