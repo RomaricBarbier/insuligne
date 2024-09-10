@@ -5,5 +5,9 @@
     <option value="type2">Diabète Type 2</option>
   </select>
 
-  <button type="submit">Enregistrer le type de diabète</button>
+  <!-- Le bouton sera désactivé si un DiagnosticReport existe déjà pour le patient -->
+  <button type="submit" [disabled]="diagnosticReportExists">Enregistrer le type de diabète</button>
+
+  <!-- Message si un DiagnosticReport existe déjà -->
+  <p *ngIf="diagnosticReportExists" style="color: red;">Un DiagnosticReport existe déjà pour ce patient.</p>
 </form>
