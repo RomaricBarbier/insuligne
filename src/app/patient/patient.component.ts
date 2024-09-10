@@ -22,7 +22,7 @@ export class PatientComponent implements OnInit {
 
   getPatient() : void {
     const url = 'api/patient';
-    const id = '66d875c65dab6800126487f6';
+    const id = '87d745c65dge6540127987i2';
 
     // Appel du service pour récupérer le patient
     this.fhirService.get(url, id).subscribe({
