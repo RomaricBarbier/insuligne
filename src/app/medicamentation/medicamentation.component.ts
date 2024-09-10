@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { AuthentificationService } from '../authentification/authentification.service';
 
 @Component({
   selector: 'app-medicamentation',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule], // Ajout de ReactiveFormsModule pour les formulaires réactifs et CommonModule
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './medicamentation.component.html',
   styleUrls: ['./medicamentation.component.css']
 })
@@ -24,19 +23,15 @@ export class MedicamentationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Initialiser le formulaire avec le champ medication et la validation
     this.medicationForm = this.fb.group({
-      medication: ['', [Validators.required]], // Nom du médicament requis
-      startDate: ['', Validators.required], // Date de début requise
-      endDate: ['', Validators.required] // Date de fin requise
+      medication: ['', [Validators.required]],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required]
     });
   }
 
-  // Méthode appelée lors de la soumission du formulaire
   onSubmit() {
     this.selectedPatientId = this.authentificationService.getSelectedPatientId();
-    console.log('Selected patient ID:', this.selectedPatientId);
-
     if (!this.selectedPatientId) {
       console.error('Patient ID is missing');
       return;
@@ -44,29 +39,33 @@ export class MedicamentationComponent implements OnInit {
 
     if (this.medicationForm.valid) {
       const medicationValue = this.medicationForm.value.medication;
-      const startDateValue = this.medicationForm.value.startDate;
-      const endDateValue = this.medicationForm.value.endDate;
+      const startDateValue = new Date(this.medicationForm.value.startDate).toISOString();
+      const endDateValue = new Date(this.medicationForm.value.endDate).toISOString();
 
-      // Construire la requête POST pour créer un MedicationStatement
-      const url = `https://fhir.alliance4u.io/api/MedicationStatement`; // URL de l'API pour MedicationStatement
+      const url = `https://fhir.alliance4u.io/api/medication-statement`;
       const body = {
         resourceType: 'MedicationStatement',
         status: 'active',
         medicationCodeableConcept: {
-          text: medicationValue // Nom du médicament
+          text: medicationValue
         },
         subject: {
-          reference: `Patient/${this.selectedPatientId}` // ID du patient sélectionné
+          reference: `Patient/${this.selectedPatientId}`
         },
         effectivePeriod: {
-          start: startDateValue, // Date de début
-          end: endDateValue // Date de fin
-        }
+          start: startDateValue,
+          end: endDateValue
+        },
+        dateAsserted: new Date().toISOString(),
+        note: [
+          {
+            text: `Prescription for ${medicationValue}`
+          }
+        ]
       };
 
-      console.log('Request body:', body); // Afficher le contenu de la requête
+      console.log('Request body:', body);
 
-      // Envoyer la requête POST à l'API pour créer un MedicationStatement
       this.http.post(url, body).pipe(
         catchError(error => {
           console.error("Erreur lors de l'enregistrement du médicament", error);
