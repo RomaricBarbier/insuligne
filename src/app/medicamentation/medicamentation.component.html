@@ -1,0 +1,29 @@
+<h2>Enregistrer un médicament</h2>
+
+<form [formGroup]="medicationForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="medication">Nom du médicament</label>
+    <input id="medication" formControlName="medication" placeholder="Nom du médicament" required />
+    <div *ngIf="medicationForm.controls['medication'].invalid && medicationForm.controls['medication'].touched">
+      Le nom du médicament est requis.
+    </div>
+  </div>
+
+  <div>
+    <label for="startDate">Date de début</label>
+    <input id="startDate" formControlName="startDate" type="date" required />
+    <div *ngIf="medicationForm.controls['startDate'].invalid && medicationForm.controls['startDate'].touched">
+      La date de début est requise.
+    </div>
+  </div>
+
+  <div>
+    <label for="endDate">Date de fin</label>
+    <input id="endDate" formControlName="endDate" type="date" required />
+    <div *ngIf="medicationForm.controls['endDate'].invalid && medicationForm.controls['endDate'].touched">
+      La date de fin est requise.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="medicationForm.invalid">Enregistrer</button>
+</form>
