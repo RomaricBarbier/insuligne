@@ -8,8 +8,9 @@
       placeholder="Entrez votre glycémie"
     />
     <!-- Afficher un message d'erreur si le champ est invalide -->
-    <div *ngIf="glycemiaForm.controls['glycemia'].invalid && glycemiaForm.controls['glycemia'].touched">
-      <small>Veuillez entrer uniquement des chiffres</small>
+    <div *ngIf="glycemiaForm.controls['glycemia']?.invalid && glycemiaForm.controls['glycemia'].touched">
+      <small *ngIf="glycemiaForm.get('glycemia')?.hasError('required')">La glycémie est requis.</small>
+      <small *ngIf="glycemiaForm.get('glycemia')?.hasError('pattern')">Veuillez entrer uniquement des chiffres</small>
     </div>
   </div>
 

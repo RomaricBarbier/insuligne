@@ -1,5 +1,18 @@
 <form [formGroup]="weightForm" (ngSubmit)="onWeightSubmit()">
-  <label for="weight">Poids (kg):</label>
-  <input id="weight" formControlName="weight" type="text" />
-  <button type="submit">Enregistrer Poids</button>
+  <label for="weight">Poids (en kg) :</label>
+  <input
+    type="text"
+    id="weight"
+    formControlName="weight"
+    placeholder="Entrez votre poids"
+  />
+
+  <!-- Message d'erreur pour les caractères non numériques -->
+  <div *ngIf="weightForm.get('weight')?.invalid && weightForm.get('weight')?.touched">
+    <small *ngIf="weightForm.get('weight')?.hasError('required')">Le poids est requis.</small>
+    <small *ngIf="weightForm.get('weight')?.hasError('pattern')">Veuillez entrer uniquement des chiffres.</small>
+  </div>
+
+  <!-- Le bouton est désactivé tant que le formulaire est invalide -->
+  <button type="submit" [disabled]="weightForm.invalid">Soumettre</button>
 </form>

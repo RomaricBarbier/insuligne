@@ -24,7 +24,7 @@ export class PoidComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Initialiser le formulaire pour le poids
+    // Initialiser le formulaire pour le poids avec une validation pour accepter uniquement des chiffres
     this.weightForm = this.fb.group({
       weight: ['', [Validators.required, Validators.pattern('^[0-9]*$')]]
     });
