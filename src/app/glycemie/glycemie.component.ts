@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http'; // Import du HttpClient
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { AuthentificationService } from '../authentification/authentification.service';
 
 @Component({
   selector: 'app-glycemie',
@@ -14,14 +15,16 @@ import { throwError } from 'rxjs';
 })
 export class GlycemieComponent implements OnInit {
   glycemiaForm!: FormGroup;
-
-  constructor(private fb: FormBuilder, private http: HttpClient) {} // Injection de HttpClient
+  selectedPatientId: string | null = null;
+  constructor(private fb: FormBuilder, private http: HttpClient,private idPatientAuthentrification: AuthentificationService) {} // Injection de HttpClient
 
   ngOnInit(): void {
     // Initialiser le formulaire avec le champ glycemia et la validation pour accepter seulement des chiffres
     this.glycemiaForm = this.fb.group({
       glycemia: ['', [Validators.required, Validators.pattern('^[0-9]*$')]] // Validation: accepter seulement des chiffres
     });
+    this.selectedPatientId = this.idPatientAuthentrification.getSelectedPatientId();
+    console.log('Selected patient ID in another component:', this.selectedPatientId);
   }
 
   // Méthode appelée lors de la soumission du formulaire
@@ -29,11 +32,9 @@ export class GlycemieComponent implements OnInit {
     if (this.glycemiaForm.valid) {
       const glycemiaValue = this.glycemiaForm.value.glycemia;
 
-      // Récupérer l'ID du patient (à adapter selon votre implémentation)
-      const patientId = '87d745c65dge6540127987i2';
 
       // Construire la requête PUT pour mettre à jour la ressource Observation (glycémie)
-      const url = `https://fhir.alliance4u.io/observation?patient=${patientId}`;
+      const url = `https://fhir.alliance4u.io/observation?patient=${this.selectedPatientId}`;
       const body = {
         resourceType: 'Observation',
         status: 'final',
@@ -47,7 +48,7 @@ export class GlycemieComponent implements OnInit {
           ]
         },
         subject: {
-          reference: `Patient/${patientId}`
+          reference: `Patient/${this.selectedPatientId}`
         },
         valueQuantity: {
           value: glycemiaValue,

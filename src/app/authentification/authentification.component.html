@@ -1,0 +1,16 @@
+<h2>Liste des Patients</h2>
+
+<!-- Si les patients sont disponibles -->
+<div *ngIf="patients && patients.length > 0; else noPatients">
+  <div class="patient-list">
+    <div class="patient-card" *ngFor="let patient of patients" (click)="selectPatient(patient.id)">
+      <h3>{{ patient.name[0]?.given.join(' ') }} {{ patient.name[0]?.family }}</h3>
+      <p><strong>Date de naissance:</strong> {{ patient.birthDate }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Message si aucun patient n'est disponible -->
+<ng-template #noPatients>
+  <p>Aucun patient trouvé.</p>
+</ng-template>
