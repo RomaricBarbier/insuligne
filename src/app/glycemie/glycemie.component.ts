@@ -16,25 +16,26 @@ import { AuthentificationService } from '../authentification/authentification.se
 export class GlycemieComponent implements OnInit {
   glycemiaForm!: FormGroup;
   selectedPatientId: string | null = null;
-  constructor(private fb: FormBuilder, private http: HttpClient,private idPatientAuthentrification: AuthentificationService) {} // Injection de HttpClient
+
+  constructor(private fb: FormBuilder, private http: HttpClient, private idPatientAuthentrification: AuthentificationService) {} // Injection de HttpClient
 
   ngOnInit(): void {
     // Initialiser le formulaire avec le champ glycemia et la validation pour accepter seulement des chiffres
     this.glycemiaForm = this.fb.group({
       glycemia: ['', [Validators.required, Validators.pattern('^[0-9]*$')]] // Validation: accepter seulement des chiffres
     });
-    this.selectedPatientId = this.idPatientAuthentrification.getSelectedPatientId();
-    console.log('Selected patient ID in another component:', this.selectedPatientId);
   }
 
   // Méthode appelée lors de la soumission du formulaire
   onSubmit() {
+    this.selectedPatientId = this.idPatientAuthentrification.getSelectedPatientId();
+    console.log('Selected patient ID:', this.selectedPatientId);
+
     if (this.glycemiaForm.valid) {
       const glycemiaValue = this.glycemiaForm.value.glycemia;
 
-
-      // Construire la requête PUT pour mettre à jour la ressource Observation (glycémie)
-      const url = `https://fhir.alliance4u.io/observation?patient=${this.selectedPatientId}`;
+      // Construire la requête POST pour créer une nouvelle observation (glycémie)
+      const url = `https://fhir.alliance4u.io/observation`; // Changer l'URL pour une requête POST à Observation
       const body = {
         resourceType: 'Observation',
         status: 'final',
@@ -48,7 +49,7 @@ export class GlycemieComponent implements OnInit {
           ]
         },
         subject: {
-          reference: `Patient/${this.selectedPatientId}`
+          reference: `Patient/${this.selectedPatientId}` // Passer l'ID du patient ici
         },
         valueQuantity: {
           value: glycemiaValue,
@@ -59,8 +60,8 @@ export class GlycemieComponent implements OnInit {
         effectiveDateTime: new Date().toISOString() // Date actuelle pour l'observation
       };
 
-      // Envoyer la requête PUT à l'API
-      this.http.put(url, body).pipe(
+      // Envoyer la requête POST à l'API pour créer la nouvelle observation
+      this.http.post(url, body).pipe(
         catchError(error => {
           console.error("Erreur lors de l'enregistrement de la glycémie", error);
           return throwError(error);
