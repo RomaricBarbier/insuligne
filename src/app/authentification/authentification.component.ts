@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FhirService } from '../fhir.service';
+import { Router } from '@angular/router';
 import { AuthentificationService} from './authentification.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { AuthentificationService} from './authentification.service';
 export class AuthentificationComponent {
   patients: any[] = []; // Variable pour stocker la liste des patients
 
-  constructor(private fhirService: FhirService, private authentificationService: AuthentificationService) {}
+  constructor(private fhirService: FhirService, private authentificationService: AuthentificationService, private router: Router) {}
 
   //A l'initialisation de l'appli
   ngOnInit(): void {
@@ -42,5 +43,6 @@ export class AuthentificationComponent {
     selectPatient(patientId: string): void {
       this.authentificationService.setSelectedPatientId(patientId)
       console.log('Selected patient ID:', patientId);
-    }
+      this.router.navigate(['/accueil']);
+}
 }
