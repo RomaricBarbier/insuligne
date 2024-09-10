@@ -1,0 +1,9 @@
+<form [formGroup]="diabeteTypeForm" (ngSubmit)="enregistrerType()">
+  <label for="diabeteType">Type de diabète :</label>
+  <select id="diabeteType" formControlName="diabeteType">
+    <option value="type1">Diabète Type 1</option>
+    <option value="type2">Diabète Type 2</option>
+  </select>
+
+  <button type="submit">Enregistrer le type de diabète</button>
+</form>
