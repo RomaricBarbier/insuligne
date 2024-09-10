@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { GraphGlycemieComponent } from '../graph-glycemie/graph-glycemie.component';
 
 @Component({
   selector: 'app-suivi',
   standalone: true,
-  imports: [],
+  imports: [GraphGlycemieComponent],
   templateUrl: './suivi.component.html',
   styleUrl: './suivi.component.css'
 })
