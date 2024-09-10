@@ -1,0 +1,17 @@
+<form [formGroup]="glycemiaForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="glycemia">Glycémie (mmol/L)</label>
+    <input
+      id="glycemia"
+      type="text"
+      formControlName="glycemia"
+      placeholder="Entrez votre glycémie"
+    />
+    <!-- Afficher un message d'erreur si le champ est invalide -->
+    <div *ngIf="glycemiaForm.controls['glycemia'].invalid && glycemiaForm.controls['glycemia'].touched">
+      <small>Veuillez entrer uniquement des chiffres</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="glycemiaForm.invalid">Soumettre</button>
+</form>
