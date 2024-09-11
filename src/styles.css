@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #f0f0f0;
+    background-image: linear-gradient(rgba(255, 0, 0, 0.5), rgba(0, 0, 255, 0.5));
+  }
+
+  h2 {
+    font-family: 'Open Sans', sans-serif; /* Une police sans empattement (sans-serif) moderne et lisible */
+    font-size: 1.8rem; /* Taille légèrement plus grande que le texte normal */
+    font-weight: 600; /* Semi-gras pour une légère mise en valeur */
+    color: #555; /* Gris moyen pour la discrétion */
+    text-transform: uppercase; /* Majuscules pour un style moderne */
+    letter-spacing: 1px; /* Espacement des lettres pour une meilleure lisibilité */
+    margin-bottom: 1.5rem; /* Espace en dessous */
+    border-bottom: 1px solid #eee; /* Ligne discrète en dessous */
+    padding-bottom: 0.5rem; /* Espacement entre le texte et la ligne */
+}

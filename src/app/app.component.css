@@ -7,21 +7,23 @@ h1 {
     margin-bottom: 2rem; /* Espace en dessous */
   
     /* Effet de dégradé subtil */
-    background: linear-gradient(to right, #f0f0f0, #e0e0e0);
+    background: linear-gradient(to right, #f0f0f0, #101010);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   
-    /* Ombre portée subtile */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  }
 
-  html {
-    background-color: #f0f0f0;
-    animation: backgroundAnimation 10s linear infinite;
+
   }
-  
+html{
+    background-color: #333;
+    }
   @keyframes backgroundAnimation {
     0% { background-color: #f0f0f0; }
     50% { background-color: #e0e0e0; }
     100% { background-color: #f0f0f0; }
+
   }
+.accueil{
+text-align: center;
+
+}
