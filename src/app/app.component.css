@@ -1,0 +1,27 @@
+h1 {
+    font-family: 'Montserrat', sans-serif; /* Une police sans-serif moderne */
+    font-size: 3.5rem; /* Taille de police plus grande pour l'impact */
+    font-weight: 700; /* Gras pour mettre en valeur */
+    color: #333; /* Couleur de texte sombre */
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 2rem; /* Espace en dessous */
+  
+    /* Effet de dégradé subtil */
+    background: linear-gradient(to right, #f0f0f0, #e0e0e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    /* Ombre portée subtile */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  html {
+    background-color: #f0f0f0;
+    animation: backgroundAnimation 10s linear infinite;
+  }
+  
+  @keyframes backgroundAnimation {
+    0% { background-color: #f0f0f0; }
+    50% { background-color: #e0e0e0; }
+    100% { background-color: #f0f0f0; }
+  }
