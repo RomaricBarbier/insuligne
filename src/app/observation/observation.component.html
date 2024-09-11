@@ -2,7 +2,7 @@
     <h2>Observations</h2>
   
     <div *ngIf="filtredObservations && filtredObservations.length > 0" class="observation-card">
-      <p><strong>Observations du médecin suite au dernières données transmises</strong></p>
+      <p><strong>Observations du médecin suite au dernières données transmises :</strong></p>
       <p class="note-text" *ngIf="filtredObservations[filtredObservations.length - 1]?.note && filtredObservations[filtredObservations.length - 1].note.length">
         {{ filtredObservations[filtredObservations.length - 1].note[0]?.text || 'Pas de note disponible' }}
       </p>
