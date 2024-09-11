@@ -1,0 +1,69 @@
+/* Style global pour le formulaire */
+.formulaire {
+    width: 100%;
+    max-width: 600px; /* Limite la largeur maximale du formulaire */
+    margin: 0 auto; /* Centre le formulaire horizontalement */
+    padding: 20px;
+    background-color: #f9f9f9; /* Couleur de fond douce */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour un effet flottant */
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Espacement entre les composants du formulaire */
+  .formulaire form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement régulier entre chaque composant */
+  }
+  
+  /* Style pour les composants individuels */
+  .formulaire form app-glycemie,
+  .formulaire form app-diabete-type,
+  .formulaire form app-poids,
+  .formulaire form app-symptome-form,
+  .formulaire form app-medicamentation {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd; /* Légère bordure pour délimiter les composants */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Légère ombre */
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Effet au survol des composants */
+  .formulaire form app-glycemie:hover,
+  .formulaire form app-diabete-type:hover,
+  .formulaire form app-poids:hover,
+  .formulaire form app-symptome-form:hover,
+  .formulaire form app-medicamentation:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style du bouton */
+  .formulaire button {
+    padding: 12px 20px;
+    background-color: #007bff; /* Couleur principale */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Changement de couleur au survol du bouton */
+  .formulaire button:hover {
+    background-color: #0056b3; /* Couleur plus foncée au survol */
+  }
+  
+  /* Rendre le formulaire réactif */
+  @media (max-width: 768px) {
+    .formulaire {
+      padding: 15px;
+      max-width: 100%; /* Le formulaire prend toute la largeur sur petits écrans */
+    }
+  }
+  
