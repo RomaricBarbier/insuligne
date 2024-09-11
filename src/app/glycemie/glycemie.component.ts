@@ -31,7 +31,7 @@ export class GlycemieComponent implements OnInit {
   }
 
   // Méthode appelée lors de la soumission du formulaire
-  onSubmit() {
+  public onSubmit() : void {
     this.selectedPatientId = this.idPatientAuthentrification.getSelectedPatientId();
     console.log('Selected patient ID:', this.selectedPatientId);
 

@@ -31,7 +31,7 @@ export class PoidComponent implements OnInit {
   }
 
   // Méthode appelée lors de la soumission du formulaire de poids
-  onWeightSubmit() {
+  public onWeightSubmit(): void {
     this.selectedPatientId = this.idPatientAuthentrification.getSelectedPatientId();
     console.log('Selected patient ID for weight:', this.selectedPatientId);
 
