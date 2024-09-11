@@ -1,1 +1,14 @@
-<p>graph-glycemie works!</p>
+<div *ngIf="filteredObservations.length > 0">
+    <h3>Observations de glycémie pour le patient</h3>
+    <ul>
+      <li *ngFor="let obs of filteredObservations">
+        Valeur : {{ obs.valueQuantity?.value }} {{ obs.valueQuantity?.unit }} 
+        - Date : {{ obs.effectiveDateTime | date:'short' }}
+      </li>
+    </ul>
+  </div>
+  
+  <div *ngIf="filteredObservations.length === 0">
+    <p>Aucune observation de glycémie disponible pour ce patient.</p>
+  </div>
+  
