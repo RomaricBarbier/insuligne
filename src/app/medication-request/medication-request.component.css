@@ -15,9 +15,23 @@
   
   .no-data {
     color: #666;
+    font-style: italic;
+    text-align: center;
+    margin-top: 10px;
   }
   
-  h3 {
-    margin-top: 20px;
+  .medication-request-card p {
+    margin: 0;
+    color: #333;
+  }
+  
+  .medication-request-card p strong {
+    color: #007bff;
+  }
+  
+  .note-text {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
   }
   

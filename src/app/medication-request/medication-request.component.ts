@@ -13,7 +13,7 @@ import { AuthentificationService } from '../authentification/authentification.se
 export class MedicationRequestComponent implements OnInit {
   medicationRequests: any[] = []; // Variable pour stocker la liste des demandes de médicaments
   selectedPatientId: string | null = null; // ID du patient
-  latestMedicationRequest: any = null; // Dernière demande de médicament pour le patient sélectionné
+  filtredMedicationRequest: any = null; // Dernière demande de médicament pour le patient sélectionné
 
   constructor(private fhirService: FhirService, private idPatientAuthentification: AuthentificationService) {}
 
@@ -34,14 +34,13 @@ export class MedicationRequestComponent implements OnInit {
         console.log('Liste des medication-requests:', this.medicationRequests); // Afficher dans la console la liste récupérée
 
         // Filtrer les demandes de médicaments sur l'id du patient
-        const patientMedicationRequests = this.medicationRequests.filter(medicationRequest =>
+        this.filtredMedicationRequest = this.medicationRequests.filter(medicationRequest =>
           medicationRequest.subject?.reference === `Patient/${this.selectedPatientId}`
         );
+        console.log('medication-requests filtré:', this.filtredMedicationRequest); // Afficher dans la console la liste filtrée
 
-        // Sélectionner la dernière demande de médicament (la dernière dans la liste filtrée)
-        this.latestMedicationRequest = patientMedicationRequests.length ? patientMedicationRequests[patientMedicationRequests.length - 1] : null;
+        
 
-        console.log('Dernière medication-request :', this.latestMedicationRequest);
       },
       error: (error) => {
         console.error('Erreur lors de la récupération des medication-requests:', error);
