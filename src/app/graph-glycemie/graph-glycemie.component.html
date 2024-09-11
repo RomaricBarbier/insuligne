@@ -1,13 +1,23 @@
 <div *ngIf="filteredObservations.length > 0">
-    <h3>Observations de glycémie pour le patient</h3>
-    <ul>
-      <li *ngFor="let obs of filteredObservations">
-        Valeur : {{ obs.valueQuantity?.value }} {{ obs.valueQuantity?.unit }} 
-        - Date : {{ obs.effectiveDateTime | date:'short' }}
-      </li>
-    </ul>
-  </div>
-  
-  <div *ngIf="filteredObservations.length === 0">
-    <p>Aucune observation de glycémie disponible pour ce patient.</p>
-  </div>
+  <h3>Observations de glycémie pour le patient</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Valeur</th>
+        <th>Unité</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obs of filteredObservations">
+        <td>{{ obs.effectiveDateTime | date:'short' }}</td>
+        <td>{{ obs.valueQuantity?.value }}</td>
+        <td>{{ obs.valueQuantity?.unit }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="filteredObservations.length === 0">
+  <p>Aucune observation de glycémie disponible pour ce patient.</p>
+</div>

@@ -8,12 +8,12 @@ import { AuthentificationService } from '../authentification/authentification.se
   standalone: true,
   imports: [CommonModule],
   templateUrl: './graph-glycemie.component.html',
-  styleUrl: './graph-glycemie.component.css'
+  styleUrls: ['./graph-glycemie.component.css']
 })
 export class GraphGlycemieComponent implements OnInit {
   observations: any[] = []; // Variable pour stocker la liste des observations
   filteredObservations: any[] = []; // Observations filtrées pour le patient
-  selectedPatientId: string | null = null; //ID du patient
+  selectedPatientId: string | null = null; // ID du patient
 
   constructor(private fhirService: FhirService, private idPatientAuthentification: AuthentificationService) {}
 
@@ -21,9 +21,9 @@ export class GraphGlycemieComponent implements OnInit {
     // Récupérer l'ID du patient sélectionné
     this.selectedPatientId = this.idPatientAuthentification.getSelectedPatientId();
     console.log('Selected patient ID:', this.selectedPatientId);
-    
+
     // Appel pour récupérer les observations
-    this.getObservations(); 
+    this.getObservations();
   }
 
   getObservations(): void {
@@ -40,6 +40,12 @@ export class GraphGlycemieComponent implements OnInit {
           observation.subject?.reference === `Patient/${this.selectedPatientId}` &&
           observation.code?.coding?.some((coding: { code: string; }) => coding.code === '15074-8') // Filtre par code FHIR pour la glycémie
         );
+
+        // Trier les observations par date décroissante
+        this.filteredObservations.sort((a, b) => new Date(b.effectiveDateTime).getTime() - new Date(a.effectiveDateTime).getTime());
+
+        // Limiter à 5 dernières observations
+        this.filteredObservations = this.filteredObservations.slice(0, 5);
 
         console.log('Observations filtrées (Glycémie):', this.filteredObservations);
       },

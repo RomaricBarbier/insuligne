@@ -1,0 +1,42 @@
+/* Styles pour le conteneur du tableau */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Assure que les bordures des cellules sont fusionnées */
+  margin: 20px 0; /* Espacement au-dessus et au-dessous du tableau */
+}
+
+/* Styles pour les en-têtes du tableau */
+thead {
+  background-color: #f4f4f4; /* Couleur de fond des en-têtes */
+}
+
+th {
+  padding: 12px 15px; /* Espacement interne des cellules d'en-tête */
+  text-align: left; /* Alignement du texte à gauche */
+  border-bottom: 2px solid #ddd; /* Bordure en bas des cellules d'en-tête */
+  font-weight: bold; /* Texte en gras pour les en-têtes */
+  color: #333; /* Couleur du texte des en-têtes */
+}
+
+/* Styles pour les cellules du tableau */
+td {
+  padding: 12px 15px; /* Espacement interne des cellules */
+  border-bottom: 1px solid #ddd; /* Bordure en bas des cellules */
+  color: #666; /* Couleur du texte des cellules */
+}
+
+/* Styles pour les lignes alternées */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Couleur de fond pour les lignes paires */
+}
+
+tbody tr:hover {
+  background-color: #eaeaea; /* Couleur de fond au survol des lignes */
+}
+
+/* Styles pour les titres */
+h3 {
+  font-size: 1.5em; /* Taille de police plus grande pour le titre */
+  color: #333; /* Couleur du texte */
+  margin-bottom: 15px; /* Espacement sous le titre */
+}
