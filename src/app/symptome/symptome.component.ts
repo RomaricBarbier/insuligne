@@ -28,7 +28,7 @@ export class SymptomFormComponent implements OnInit {
   ngOnInit(): void {
     // Initialisation du formulaire avec validation
     this.symptomForm = this.fb.group({
-      symptom: ['', Validators.required], // Champ pour le symptôme, obligatoire
+      symptom: [''], // Champ pour le symptôme, obligatoire
       comments: ['']  // Commentaires facultatifs
     });
 
