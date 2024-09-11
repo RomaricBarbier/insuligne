@@ -1,14 +1,18 @@
 <div class="medication-request-container">
-    <h2>Prescription :</h2>
-    <div *ngIf="medicationRequests.length === 0" class="no-data">
-      <p>Aucune demande de médicament disponible.</p>
+    <h2>Prescription</h2>
+    <div *ngIf="!latestMedicationRequest" class="no-data">
+      <p>Aucune demande de médicament disponible pour ce patient.</p>
     </div>
-    <div *ngIf="medicationRequests.length > 0" class="medication-request-card">
-      <h3>{{ medicationRequests[medicationRequests.length - 1].medicationName }}</h3>
-      <p><strong>ID:</strong> {{ medicationRequests[medicationRequests.length - 1].id }}</p>
-      <p><strong>Patient ID:</strong> {{ medicationRequests[medicationRequests.length - 1].patientId }}</p>
-      <p><strong>Date de demande:</strong> {{ medicationRequests[medicationRequests.length - 1].requestDate | date }}</p>
-      <p><strong>Status:</strong> {{ medicationRequests[medicationRequests.length - 1].status }}</p>
+    <div *ngIf="latestMedicationRequest" class="medication-request-card">
+      
+      <div *ngIf="latestMedicationRequest.note && latestMedicationRequest.note.length">
+        <h3>Veuillez suivre le traitement suivant :</h3>
+        <ul>
+          <li *ngFor="let note of latestMedicationRequest.note">
+            {{ note.text || 'Pas de texte disponible' }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   
