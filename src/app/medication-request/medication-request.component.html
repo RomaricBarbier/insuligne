@@ -1,1 +1,14 @@
-<p>medication-request works!</p>
+<div class="medication-request-container">
+    <h2>Prescription :</h2>
+    <div *ngIf="medicationRequests.length === 0" class="no-data">
+      <p>Aucune demande de médicament disponible.</p>
+    </div>
+    <div *ngIf="medicationRequests.length > 0" class="medication-request-card">
+      <h3>{{ medicationRequests[medicationRequests.length - 1].medicationName }}</h3>
+      <p><strong>ID:</strong> {{ medicationRequests[medicationRequests.length - 1].id }}</p>
+      <p><strong>Patient ID:</strong> {{ medicationRequests[medicationRequests.length - 1].patientId }}</p>
+      <p><strong>Date de demande:</strong> {{ medicationRequests[medicationRequests.length - 1].requestDate | date }}</p>
+      <p><strong>Status:</strong> {{ medicationRequests[medicationRequests.length - 1].status }}</p>
+    </div>
+  </div>
+  

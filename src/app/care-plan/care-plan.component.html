@@ -1,1 +1,14 @@
-<p>care-plan works!</p>
+<div class="care-plan-container">
+    <h2>Observation du médecin :</h2>
+    <div *ngIf="carePlans.length === 0" class="no-data">
+      <p>Aucune observation disponible.</p>
+    </div>
+    <div *ngFor="let plan of carePlans" class="care-plan-card">
+      <h3>{{ plan.planName }}</h3>
+      <p><strong>ID:</strong> {{ plan.id }}</p>
+      <p><strong>Patient ID:</strong> {{ plan.patientId }}</p>
+      <p><strong>Date de création:</strong> {{ plan.creationDate | date }}</p>
+      <p><strong>Status:</strong> {{ plan.status }}</p>
+    </div>
+  </div>
+  
