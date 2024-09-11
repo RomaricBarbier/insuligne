@@ -7,7 +7,7 @@ table {
 
 /* Styles pour les en-têtes du tableau */
 thead {
-  background-color: #f4f4f4; /* Couleur de fond des en-têtes */
+  background-color: #c9c9c9; /* Couleur de fond des en-têtes */
 }
 
 th {
@@ -26,12 +26,12 @@ td {
 }
 
 /* Styles pour les lignes alternées */
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9; /* Couleur de fond pour les lignes paires */
+tbody tr {
+  background-color: #e6e6e6; /* Couleur de fond pour les lignes paires */
 }
 
 tbody tr:hover {
-  background-color: #eaeaea; /* Couleur de fond au survol des lignes */
+  background-color: #cdcdcd; /* Couleur de fond au survol des lignes */
 }
 
 /* Styles pour les titres */
