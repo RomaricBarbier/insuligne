@@ -1,14 +1,10 @@
 <div class="care-plan-container">
-    <h2>Observation du médecin :</h2>
-    <div *ngIf="carePlans.length === 0" class="no-data">
-      <p>Aucune observation disponible.</p>
+    <h2>Conduite à tenir</h2>
+    <div *ngIf="!filteredCarePlan.length" class="no-data">
+      <p>Aucun plan de soins disponible pour ce patient.</p>
     </div>
-    <div *ngFor="let plan of carePlans" class="care-plan-card">
-      <h3>{{ plan.planName }}</h3>
-      <p><strong>ID:</strong> {{ plan.id }}</p>
-      <p><strong>Patient ID:</strong> {{ plan.patientId }}</p>
-      <p><strong>Date de création:</strong> {{ plan.creationDate | date }}</p>
-      <p><strong>Status:</strong> {{ plan.status }}</p>
+    <div *ngIf="filteredCarePlan.length" class="care-plan-card">
+      <p><strong>Veuillez suivre les recommandations suivantes :</strong> {{ filteredCarePlan[0]?.description || 'Pas de description disponible' }}</p>
     </div>
   </div>
   

@@ -13,6 +13,7 @@ import { AuthentificationService } from '../authentification/authentification.se
 export class CarePlanComponent implements OnInit {
   carePlans: any[] = []; // Variable pour stocker la liste des observations
   selectedPatientId: string | null = null; //ID du patient
+  filteredCarePlan: any[] = []; //Care_plan filtré
 
   constructor(private fhirService: FhirService, private idPatientAuthentification: AuthentificationService) {}
 
@@ -31,6 +32,19 @@ export class CarePlanComponent implements OnInit {
       next: (data) => {
         this.carePlans = data;
         console.log('Liste des care-plans:', this.carePlans); // Afficher dans la console la liste récupérée
+      
+        //Filtrer les care-plan sur l'id du patient
+        this.filteredCarePlan = this.carePlans.filter(carePlan =>
+          carePlan.subject?.reference === `Patient/${this.selectedPatientId}` // Filtre par code FHIR pour la glycémie
+        );
+
+        // Trier les observations par date décroissante
+        this.filteredCarePlan.sort((a, b) => new Date(b.effectiveDateTime).getTime() - new Date(a.effectiveDateTime).getTime());
+
+        // Limiter à 5 dernières observations
+        this.filteredCarePlan = this.filteredCarePlan.slice(0, 1);
+
+        console.log('Dernier care-plan :', this.filteredCarePlan);
       },
       error: (error) => {
         console.error('Erreur lors de la récupération des care-plans:', error);

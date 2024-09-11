@@ -1,21 +1,8 @@
-/* Conteneur principal pour les plans de soins */
 .care-plan-container {
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .no-data {
-    text-align: center;
-    color: #888;
-    font-size: 18px;
   }
   
   .care-plan-card {
@@ -24,16 +11,9 @@
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    margin-bottom: 15px;
   }
   
-  .care-plan-card h3 {
-    margin-top: 0;
-    font-size: 20px;
-    color: #007bff;
-  }
-  
-  .care-plan-card p {
-    margin: 5px 0;
+  .no-data {
+    color: #666;
   }
   
