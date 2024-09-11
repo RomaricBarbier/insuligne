@@ -1,5 +1,20 @@
-<app-practitioner></app-practitioner>
-<app-graph-glycemie></app-graph-glycemie>
-<app-observation></app-observation>
-<app-care-plan></app-care-plan>
-<app-medication-request></app-medication-request>
+<div class="container">
+    <div class="header">
+      <app-practitioner></app-practitioner>
+    </div>
+    <div class="graph-container">
+      <app-graph-glycemie></app-graph-glycemie>
+    </div>
+    <div class="cards">
+      <div class="component observation-container">
+        <app-observation></app-observation>
+      </div>
+      <div class="component care-plan-container">
+        <app-care-plan></app-care-plan>
+      </div>
+      <div class="component medication-request-container">
+        <app-medication-request></app-medication-request>
+      </div>
+    </div>
+  </div>
+  

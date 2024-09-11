@@ -2,7 +2,7 @@
     <h2>Prescription</h2>
   
     <div *ngIf="filtredMedicationRequest && filtredMedicationRequest.length > 0" class="medication-request-card">
-      <p><strong>Veuillez suivre le traitement suivant</strong></p>
+      <p><strong>Veuillez suivre le traitement suivant :</strong></p>
       <p class="note-text" *ngIf="filtredMedicationRequest[filtredMedicationRequest.length - 1]?.note && filtredMedicationRequest[filtredMedicationRequest.length - 1].note.length">
         {{ filtredMedicationRequest[filtredMedicationRequest.length - 1].note[0]?.text || 'Pas de note disponible' }}
       </p>

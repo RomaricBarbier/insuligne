@@ -1,9 +1,11 @@
-<!-- Vérifiez que les données existent avant de les afficher -->
-<div *ngIf="practitioner?.name?.length">
-    <p>Suivis du Dr. {{ practitioner.name[0].suffix }} {{ practitioner.name[0].family }}</p>
+<div class="practitioner-container">
+  <!-- Vérifiez que les données existent avant de les afficher -->
+  <div *ngIf="practitioner?.name?.length" class="practitioner-info">
+    <p>Suivi du Dr. {{ practitioner.name[0].suffix }} {{ practitioner.name[0].family }}</p>
   </div>
-  
+
   <!-- Si les données ne sont pas encore chargées -->
-  <div *ngIf="!practitioner">
+  <div *ngIf="!practitioner" class="loading-message">
     <p>Loading practitioner data...</p>
   </div>
+</div>

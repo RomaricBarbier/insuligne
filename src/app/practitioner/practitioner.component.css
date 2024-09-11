@@ -1,0 +1,31 @@
+.practitioner-container {
+    padding: 20px;
+    background-color: #659ab5; /* Fond légèrement bleuté pour un look médical */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Espacement sous le conteneur pour séparer des autres sections */
+    text-align: center; /* Centre le texte à l'intérieur du conteneur */
+  }
+  
+  .practitioner-info {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #d0e3f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: inline-block; /* Permet de centrer la carte d'information */
+  }
+  
+  .practitioner-info p {
+    color: #333; /* Texte principal en couleur sombre pour une bonne lisibilité */
+    font-size: 1.2em;
+    margin: 0; /* Suppression des marges par défaut pour un alignement plus précis */
+  }
+  
+  .loading-message {
+    color: #6c757d; /* Couleur pour le message de chargement */
+    font-style: italic;
+    text-align: center; /* Centrer le texte pour le message de chargement */
+    font-size: 1.1em;
+  }
+  

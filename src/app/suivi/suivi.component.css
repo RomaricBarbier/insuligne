@@ -1,0 +1,71 @@
+/* Conteneur principal pour les composants de suivi */
+.container {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "graph"
+      "cards";
+    gap: 20px; /* Espace entre les composants */
+    padding: 20px; /* Padding autour du conteneur */
+    box-sizing: border-box; /* Inclut le padding et les bordures dans la largeur totale */
+  }
+  
+  /* Styles pour le composant de suivi 
+  .header {
+    grid-area: header;
+    background-color: #ffffff; /* Bleu clair
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }*/
+  
+  /* Styles pour le graphique de glycémie */
+  .graph-container {
+    grid-area: graph;
+    background-color: #ffffff; /* Bleu légèrement plus foncé */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styles pour les trois autres composants alignés en bas */
+  .cards {
+    grid-area: cards;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Styles généraux pour les composants individuels */
+  .component {
+    background-color: #ffffff; /* Blanc pour le fond des composants */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  /* Styles spécifiques pour chaque type de composant, gardant une apparence uniforme */
+  .observation-container,
+  .care-plan-container,
+  .medication-request-container {
+    color: #333; /* Texte foncé pour le contraste avec le fond blanc */
+  }
+  
+  /* Exemple d'espacement et de mise en forme pour les titres dans les composants */
+  .component h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    color: #1976d2; /* Bleu sombre pour les titres */
+  }
+  
+  /* Responsivité */
+  @media (max-width: 768px) {
+    .container {
+      grid-template-areas:
+        "header"
+        "graph"
+        "cards";
+    }
+  }
+  
