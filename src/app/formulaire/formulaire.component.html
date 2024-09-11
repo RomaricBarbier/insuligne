@@ -8,3 +8,8 @@
     <button type="button" (click)="submitAllForms()">Envoyer</button>
   </form>
 </div>
+
+<!-- Pop-up message de validation -->
+<div class="popup" *ngIf="showPopup">
+  <p>Formulaire validé avec succès !</p>
+</div>

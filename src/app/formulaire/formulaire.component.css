@@ -9,14 +9,14 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour un effet flottant */
     font-family: Arial, sans-serif;
   }
-  
+
   /* Espacement entre les composants du formulaire */
   .formulaire form {
     display: flex;
     flex-direction: column;
     gap: 20px; /* Espacement régulier entre chaque composant */
   }
-  
+
   /* Style pour les composants individuels */
   .formulaire form app-glycemie,
   .formulaire form app-diabete-type,
@@ -30,7 +30,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Légère ombre */
     transition: box-shadow 0.3s ease;
   }
-  
+
   /* Effet au survol des composants */
   .formulaire form app-glycemie:hover,
   .formulaire form app-diabete-type:hover,
@@ -39,7 +39,7 @@
   .formulaire form app-medicamentation:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
-  
+
   /* Style du bouton */
   .formulaire button {
     padding: 12px 20px;
@@ -53,12 +53,12 @@
     text-align: center;
     transition: background-color 0.3s ease;
   }
-  
+
   /* Changement de couleur au survol du bouton */
   .formulaire button:hover {
     background-color: #0056b3; /* Couleur plus foncée au survol */
   }
-  
+
   /* Rendre le formulaire réactif */
   @media (max-width: 768px) {
     .formulaire {
@@ -66,4 +66,28 @@
       max-width: 100%; /* Le formulaire prend toute la largeur sur petits écrans */
     }
   }
-  
+  .popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50; /* Vert pour succès */
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 18px;
+    text-align: center;
+    opacity: 0.9;
+    animation: fadeout 5s ease-out forwards;
+  }
+
+  @keyframes fadeout {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
