@@ -25,8 +25,6 @@ export class MedicamentationComponent implements OnInit {
   ngOnInit(): void {
     this.medicationForm = this.fb.group({
       medication: ['', [Validators.required]],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required]
     });
   }
 
@@ -39,40 +37,49 @@ export class MedicamentationComponent implements OnInit {
 
     if (this.medicationForm.valid) {
       const medicationValue = this.medicationForm.value.medication;
-      const startDateValue = new Date(this.medicationForm.value.startDate).toISOString();
-      const endDateValue = new Date(this.medicationForm.value.endDate).toISOString();
 
-      const url = `https://fhir.alliance4u.io/api/medication-statement`;
+      const url = 'https://fhir.alliance4u.io/api/diagnostic-report';
       const body = {
-        resourceType: 'MedicationStatement',
-        status: 'active',
-        medicationCodeableConcept: {
-          text: medicationValue
+        resourceType: 'DiagnosticReport',
+        status: 'final',
+        code: {
+          coding: [
+            {
+              system: 'http://loinc.org',
+              code: '1234-5', // Code LOINC pour le rapport de médicament, ou autre code approprié
+              display: 'Medication Report'
+            }
+          ],
+          text: 'Medication Report'
         },
         subject: {
           reference: `Patient/${this.selectedPatientId}`
         },
-        effectivePeriod: {
-          start: startDateValue,
-          end: endDateValue
-        },
-        dateAsserted: new Date().toISOString(),
-        note: [
+        effectiveDateTime: new Date().toISOString(),
+        issued: new Date().toISOString(),
+        result: [
           {
-            text: `Prescription for ${medicationValue}`
+            reference: 'Observation/medication', // Assurez-vous que cette observation existe
+            display: `Medication: ${medicationValue}`
           }
-        ]
+        ],
+        conclusion: `Medication: ${medicationValue}`
       };
 
       console.log('Request body:', body);
 
       this.http.post(url, body).pipe(
         catchError(error => {
-          console.error("Erreur lors de l'enregistrement du médicament", error);
+          console.error("Erreur lors de l'enregistrement du DiagnosticReport", error);
           return throwError(error);
         })
-      ).subscribe(() => {
-        console.log('Médicament enregistré avec succès');
+      ).subscribe({
+        next: () => {
+          console.log('DiagnosticReport enregistré avec succès');
+        },
+        error: (error) => {
+          console.error("Erreur lors de l'enregistrement du DiagnosticReport", error);
+        }
       });
     } else {
       console.log('Formulaire invalide');

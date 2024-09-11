@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-formulaire',
   standalone: true,
-  imports: [CommonModule, GlycemieComponent, PoidComponent, SymptomFormComponent, DiabeteTypeComponent],
+  imports: [CommonModule,GlycemieComponent, PoidComponent, SymptomFormComponent, DiabeteTypeComponent, MedicamentationComponent, MedicamentationComponent ],
   templateUrl: './formulaire.component.html',
   styleUrl: './formulaire.component.css'
 })
@@ -19,6 +19,7 @@ export class FormulaireComponent implements OnInit {
   @ViewChild(DiabeteTypeComponent) diabeteTypeComponent!: DiabeteTypeComponent;
   @ViewChild(PoidComponent) poidComponent!: PoidComponent;
   @ViewChild(SymptomFormComponent) symptomFormComponent!: SymptomFormComponent;
+  @ViewChild(MedicamentationComponent) MedicamentationComponent!: MedicamentationComponent;
 
   constructor(private fb: FormBuilder) {}
 
@@ -28,13 +29,15 @@ export class FormulaireComponent implements OnInit {
     if (this.glycemieComponent.glycemiaForm.valid &&
         this.diabeteTypeComponent.diabeteTypeForm.valid &&
         this.poidComponent.weightForm.valid &&
-        this.symptomFormComponent.symptomForm.valid) {
-      
+        this.symptomFormComponent.symptomForm.valid &&
+        this.MedicamentationComponent.medicationForm.valid) {
+
       // Appeler les méthodes de soumission de chaque composant enfant
       this.glycemieComponent.onSubmit();
       this.diabeteTypeComponent.enregistrerType();
       this.poidComponent.onWeightSubmit();
       this.symptomFormComponent.submitSymptom();
+      this.MedicamentationComponent.onSubmit();
 
     } else {
       console.log('Un ou plusieurs formulaires sont invalides.');
