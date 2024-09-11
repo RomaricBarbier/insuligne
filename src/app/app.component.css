@@ -4,7 +4,6 @@ h1 {
     font-weight: 700; /* Gras pour mettre en valeur */
     color: #333; /* Couleur de texte sombre */
     text-align: center; /* Centrer le texte */
-    margin-bottom: 2rem; /* Espace en dessous */
   
     /* Effet de dégradé subtil */
     background: linear-gradient(to right, #f0f0f0, #101010);
@@ -23,7 +22,13 @@ html{
     100% { background-color: #f0f0f0; }
 
   }
-.accueil{
-text-align: center;
-
-}
+  .accueil {
+    display: flex; /* Transforme .accueil en un conteneur flexible */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+height: 250px;
+  }
+  .accueil img{
+    width: 250px;
+    height: 250px;
+  }

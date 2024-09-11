@@ -1,0 +1,36 @@
+/* app.component.css */
+.titre {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;  
+  }
+.container {
+    display: flex;
+    flex-direction: row; 
+    align-items: top;
+    justify-content: center;
+    text-align: center;  
+    gap: 2rem; /* Ajoute un espace de 2rem entre les éléments flexibles */
+    
+  }
+  
+  .modern-button {
+    padding: 1.5rem 3rem; /* Augmente le padding pour des boutons plus gros */
+    font-size: 1.5rem; /* Augmente la taille de la police */
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #007bff; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 2rem 0; /* Augmente la marge verticale pour écarter les boutons */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    width: 200px; /* Définit une largeur fixe pour les boutons */
+    
+  }
+  
+  .modern-button:hover {
+    background-color: #0056b3; 
+  }
