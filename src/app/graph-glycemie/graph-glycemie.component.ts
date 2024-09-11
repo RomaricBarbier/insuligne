@@ -17,11 +17,13 @@ export class GraphGlycemieComponent implements OnInit {
 
   constructor(private fhirService: FhirService, private idPatientAuthentification: AuthentificationService) {}
 
-  //A l'initialisation de l'appli
   ngOnInit(): void {
-    this.getObservations(); // Appel de la méthode pour récupérer les patients au chargement
+    // Récupérer l'ID du patient sélectionné
     this.selectedPatientId = this.idPatientAuthentification.getSelectedPatientId();
     console.log('Selected patient ID:', this.selectedPatientId);
+    
+    // Appel pour récupérer les observations
+    this.getObservations(); 
   }
 
   getObservations(): void {
@@ -31,13 +33,21 @@ export class GraphGlycemieComponent implements OnInit {
     this.fhirService.get(url).subscribe({
       next: (data) => {
         this.observations = data;
-        console.log('Liste des observations:', this.observations); // Afficher dans la console la liste récupérée
+        console.log('Liste des observations:', this.observations); // Afficher toutes les observations
+
+        // Filtrer les observations en fonction de l'ID du patient et du code de glycémie
+        this.filteredObservations = this.observations.filter(observation =>
+          observation.subject?.reference === `Patient/${this.selectedPatientId}` &&
+          observation.code?.coding?.some((coding: { code: string; }) => coding.code === '15074-8') // Filtre par code FHIR pour la glycémie
+        );
+
+        console.log('Observations filtrées (Glycémie):', this.filteredObservations);
       },
       error: (error) => {
-        console.error('Erreur lors de la récupération des patients:', error);
+        console.error('Erreur lors de la récupération des observations:', error);
       },
       complete: () => {
-        console.log('Récupération de la liste des patients terminée');
+        console.log('Récupération des observations terminée');
       }
     });
   }
