@@ -38,13 +38,7 @@ export class CarePlanComponent implements OnInit {
           carePlan.subject?.reference === `Patient/${this.selectedPatientId}` // Filtre par code FHIR pour la glycémie
         );
 
-        // Trier les observations par date décroissante
-        this.filteredCarePlan.sort((a, b) => new Date(b.effectiveDateTime).getTime() - new Date(a.effectiveDateTime).getTime());
-
-        // Limiter à 5 dernières observations
-        this.filteredCarePlan = this.filteredCarePlan.slice(0, 1);
-
-        console.log('Dernier care-plan :', this.filteredCarePlan);
+        console.log('care-plan filtré:', this.filteredCarePlan);
       },
       error: (error) => {
         console.error('Erreur lors de la récupération des care-plans:', error);

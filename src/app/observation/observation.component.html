@@ -1,0 +1,15 @@
+<div class="observation-container">
+    <h2>Observation du médecin</h2>
+  
+    <div *ngIf="filtredObservations && filtredObservations.length > 0" class="observation-card">
+      <p><strong>Voici les observation du médecin suite au dernières données transmises</strong></p>
+      <p class="note-text" *ngIf="filtredObservations[filtredObservations.length - 1]?.note && filtredObservations[filtredObservations.length - 1].note.length">
+        {{ filtredObservations[filtredObservations.length - 1].note[0]?.text || 'Pas de note disponible' }}
+      </p>
+    </div>
+  
+    <div *ngIf="!filtredObservations || filtredObservations.length === 0" class="no-data">
+      <p>Aucune observation n'est actuellement disponible.</p>
+    </div>
+  </div>
+  

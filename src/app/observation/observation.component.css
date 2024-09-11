@@ -1,11 +1,11 @@
-.care-plan-container {
+.observation-container {
     padding: 20px;
-    background-color: #659ab5; /* Couleur de fond uniformisée */
+    background-color: #659ab5;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .care-plan-card {
+  .observation-card {
     background-color: #ffffff;
     padding: 15px;
     border-radius: 8px;
@@ -14,12 +14,13 @@
   }
   
   .no-data {
-    color: black;
+    color: #6c757d;
     font-style: italic;
   }
   
-  .care-plan-card p {
-    color: black; /* Couleur du texte uniformisée */
+  .note-text {
+    color: black;
     font-size: 1.1em;
+    margin-top: 10px;
   }
   

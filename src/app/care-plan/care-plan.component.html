@@ -1,14 +1,15 @@
 <div class="care-plan-container">
-    <h2>Conduite à tenir</h2>
-    
-    <!-- Message affiché si aucun care-plan n'est disponible -->
+    <h2>Conduite à Tenir</h2>
+  
     <div *ngIf="!filteredCarePlan.length" class="no-data">
-      <p>Aucun plan de soins disponible pour ce patient.</p>
+      <p>Aucune recommandation n'est actuellement à suivre</p>
     </div>
-    
-    <!-- Affichage du dernier care-plan disponible -->
+  
     <div *ngIf="filteredCarePlan.length" class="care-plan-card">
-      <p><strong>Veuillez suivre les recommandations suivantes :</strong> {{ filteredCarePlan[filteredCarePlan.length - 1]?.description || 'Pas de description disponible' }}</p>
+      <p><strong>Veuillez suivre les recommandations suivantes :</strong></p>
+      <p class="description-text">
+        {{ filteredCarePlan[filteredCarePlan.length - 1]?.description || 'Pas de description disponible' }}
+      </p>
     </div>
   </div>
   
