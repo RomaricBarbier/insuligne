@@ -1,5 +1,5 @@
 <div class="symptom-form-container">
-  <h2>Soumettre un Symptom</h2>
+  <h2>Avez vous des symptômes ?</h2>
 
   <!-- Si le symptôme a été soumis, afficher un message de succès -->
   <div *ngIf="symptomSubmitted" class="success-message">
@@ -9,7 +9,7 @@
   <!-- Formulaire de symptôme -->
   <form [formGroup]="symptomForm" (ngSubmit)="submitSymptom()">
 
-    <label for="symptom">Symptôme:</label>
+    <label for="symptom">Symptôme(s):</label>
     <input id="symptom" formControlName="symptom" placeholder="Entrez votre symptôme" required>
     <div *ngIf="symptomForm.get('symptom')?.invalid && symptomForm.get('symptom')?.touched" class="error">
     </div>
