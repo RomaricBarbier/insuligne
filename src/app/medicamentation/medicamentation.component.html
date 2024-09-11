@@ -1,7 +1,7 @@
 <div class="medication-form-container">
   <form [formGroup]="medicationForm" (ngSubmit)="onSubmit()">
     <div>
-      <label for="medication">Médicament</label>
+      <label for="medication">Prenez-vous un traitement ?</label>
       <input id="medication" formControlName="medication" placeholder="Nom du médicament">
       <div *ngIf="medicationForm.get('medication')?.invalid && medicationForm.get('medication')?.touched">
       </div>

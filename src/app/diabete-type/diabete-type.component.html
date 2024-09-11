@@ -1,5 +1,5 @@
 <form [formGroup]="diabeteTypeForm" (ngSubmit)="enregistrerType()" [ngClass]="{'disabled-form': diagnosticReportExists}">
-  <label for="diabeteType">Type de diabète:</label>
+  <label for="diabeteType">Votre type de diabète :</label>
   <select id="diabeteType" formControlName="diabeteType" [attr.disabled]="diagnosticReportExists ? true : null">
     <option value="type1">Type 1</option>
     <option value="type2">Type 2</option>
