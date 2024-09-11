@@ -1,1 +1,9 @@
-<p>practitioner works!</p>
+<!-- Vérifiez que les données existent avant de les afficher -->
+<div *ngIf="practitioner?.name?.length">
+    <p>{{ practitioner.name[0].suffix }} {{ practitioner.name[0].family }}</p>
+  </div>
+  
+  <!-- Si les données ne sont pas encore chargées -->
+  <div *ngIf="!practitioner">
+    <p>Loading practitioner data...</p>
+  </div>

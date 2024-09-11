@@ -11,7 +11,7 @@ import { AuthentificationService } from '../authentification/authentification.se
   styleUrl: './practitioner.component.css'
 })
 export class PractitionerComponent implements OnInit {
-  praticiens: any[] = []; // Variable pour stocker la liste des observations
+  practitioner: any;
   selectedPatientId: string | null = null; //ID du patient
 
   constructor(private fhirService: FhirService, private idPatientAuthentification: AuthentificationService) {}
@@ -25,18 +25,19 @@ export class PractitionerComponent implements OnInit {
 
   getPraticiens(): void {
     const url = 'api/practitioner';
+    const id = '1235dr4u54321'
 
     // Appel au service pour récupérer la liste des observations
-    this.fhirService.get(url).subscribe({
+    this.fhirService.get(url, id).subscribe({
       next: (data) => {
-        this.praticiens = data;
-        console.log('Liste des praticiens:', this.praticiens); // Afficher dans la console la liste récupérée
+        this.practitioner = data;
+        console.log('Practitioner:', this.practitioner); // Afficher dans la console la liste récupérée
       },
       error: (error) => {
-        console.error('Erreur lors de la récupération des patients:', error);
+        console.error('Erreur lors de la récupération du practitioner:', error);
       },
       complete: () => {
-        console.log('Récupération de la liste des praticiens terminée');
+        console.log('Récupération du pratitioner terminée');
       }
     });
   }
