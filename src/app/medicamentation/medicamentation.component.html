@@ -5,7 +5,6 @@
       <label for="medication">Médicament</label>
       <input id="medication" formControlName="medication" placeholder="Nom du médicament">
       <div *ngIf="medicationForm.get('medication')?.invalid && medicationForm.get('medication')?.touched">
-        Le nom du médicament est requis
       </div>
     </div>
     <!--button type="submit" [disabled]="medicationForm.invalid">Enregistrer</!--button-->

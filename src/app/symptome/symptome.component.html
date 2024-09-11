@@ -12,7 +12,6 @@
     <label for="symptom">Symptôme:</label>
     <input id="symptom" formControlName="symptom" placeholder="Entrez votre symptôme" required>
     <div *ngIf="symptomForm.get('symptom')?.invalid && symptomForm.get('symptom')?.touched" class="error">
-      Le symptôme est requis.
     </div>
 
     <label for="comments">Commentaires:</label>

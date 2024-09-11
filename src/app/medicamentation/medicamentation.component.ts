@@ -24,7 +24,7 @@ export class MedicamentationComponent implements OnInit {
 
   ngOnInit(): void {
     this.medicationForm = this.fb.group({
-      medication: ['', [Validators.required]],
+      medication: [''],
     });
   }
 
