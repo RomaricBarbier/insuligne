@@ -1,7 +1,7 @@
-/* Style global pour le formulaire */
+/* Conteneur global du formulaire */
 .formulaire {
     width: 100%;
-    max-width: 600px; /* Limite la largeur maximale du formulaire */
+    max-width: 800px; /* Ajuste la largeur maximale si nécessaire */
     margin: 0 auto; /* Centre le formulaire horizontalement */
     padding: 20px;
     background-color: #f9f9f9; /* Couleur de fond douce */
@@ -10,19 +10,30 @@
     font-family: Arial, sans-serif;
   }
   
-  /* Espacement entre les composants du formulaire */
+  /* Style global du formulaire en grille */
   .formulaire form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espacement régulier entre chaque composant */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Trois colonnes égales */
+    gap: 15px; /* Espacement entre les éléments */
   }
   
   /* Style pour les composants individuels */
   .formulaire form app-glycemie,
   .formulaire form app-diabete-type,
-  .formulaire form app-poids,
+  .formulaire form app-poids {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd; /* Légère bordure pour délimiter les composants */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Légère ombre */
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Style pour les autres composants */
   .formulaire form app-symptome-form,
-  .formulaire form app-medicamentation {
+  .formulaire form app-medicamentation,
+  .formulaire button {
+    grid-column: span 3; /* Occupe toute la largeur sur la ligne */
     background-color: white;
     padding: 15px;
     border-radius: 8px;
@@ -59,11 +70,10 @@
     background-color: #0056b3; /* Couleur plus foncée au survol */
   }
   
-  /* Rendre le formulaire réactif */
+  /* Réactivité sur petits écrans : une seule colonne */
   @media (max-width: 768px) {
-    .formulaire {
-      padding: 15px;
-      max-width: 100%; /* Le formulaire prend toute la largeur sur petits écrans */
+    .formulaire form {
+      grid-template-columns: 1fr; /* Une seule colonne sur petits écrans */
     }
   }
   
