@@ -6,11 +6,12 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { GlycemieComponent } from './glycemie/glycemie.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PoidComponent } from "./poid/poid.component";
+import { SymptomFormComponent } from './symptome/symptome.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, PatientComponent, ReactiveFormsModule, DiabeteTypeComponent, AuthentificationComponent, GlycemieComponent, PoidComponent],
+  imports: [RouterOutlet, PatientComponent, ReactiveFormsModule, DiabeteTypeComponent, AuthentificationComponent, GlycemieComponent, PoidComponent, SymptomFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 
